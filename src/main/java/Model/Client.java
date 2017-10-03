@@ -24,16 +24,32 @@ public class Client {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSurname() {
         return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getLogin() {
         return login;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public int getPin() {
         return pin;
+    }
+
+    public void setPin(int pin) {
+        this.pin = pin;
     }
 
     public int getSaldo() {

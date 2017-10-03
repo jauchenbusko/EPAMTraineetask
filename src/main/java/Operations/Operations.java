@@ -4,7 +4,8 @@ import java.io.IOException;
 
 public interface Operations {
 
-    public void addCash(int value) throws IOException;
-    public void giveCash(int value) throws IOException;
-    public void showBalance();
+    void addCash(int value) throws IOException;
+    void giveCash(int value) throws IOException;
+    void showClientDetails();
+    void showBalance();
 }

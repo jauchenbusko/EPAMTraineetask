@@ -1,0 +1,69 @@
+package Operations;
+
+import Model.Client;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class OperationsImpl implements Operations {
+
+    private String name;
+    private String surname;
+    private String login;
+    private int pin;
+    private int saldo;
+
+    private Client client;
+
+    public OperationsImpl(String name, String surname, String login, int pin, int saldo) {
+        client = new Client(name, surname, login, pin, saldo);
+    }
+
+    @Override
+    public void addCash(int value){
+
+        if ( value%5 == 0 ){
+            client.setSaldo(client.getSaldo()+value);
+        } else {
+            System.out.println("Only 5, 10 and 20 bills are accept");
+        }
+    }
+
+    @Override
+    public void giveCash(int value){
+
+        if ( value%5 == 0 && value <= client.getSaldo() ){
+            client.setSaldo(client.getSaldo()- value);
+        } else {
+            System.out.println("Only 5, 10 and 20 bills are accept");
+        }
+    }
+
+    @Override
+    public void showClientDetails() {
+
+        System.out.println(client.toString());
+    }
+
+    @Override
+    public void showBalance() {
+
+        System.out.println(client.getSaldo());
+    }
+
+    public static void main(String args[]){
+
+        Scanner in = new Scanner(System.in);
+
+
+        OperationsImpl operations = new OperationsImpl("Zenia", "Busko", "login",1111, 50);
+
+        operations.showClientDetails();
+        operations.showBalance();
+        operations.addCash(15);
+        operations.giveCash(50);
+
+
+        operations.showBalance();
+    }
+}
