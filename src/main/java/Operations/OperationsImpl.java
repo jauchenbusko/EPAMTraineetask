@@ -55,15 +55,17 @@ public class OperationsImpl implements Operations {
 
         Scanner in = new Scanner(System.in);
 
+        int addValue = in.nextInt();
+        int giveValue = in.nextInt();
 
         OperationsImpl operations = new OperationsImpl("Zenia", "Busko", "login",1111, 50);
 
         operations.showClientDetails();
         operations.showBalance();
-        operations.addCash(15);
-        operations.giveCash(50);
 
-
+        operations.addCash(addValue);
+        operations.giveCash(giveValue);
+        
         operations.showBalance();
     }
 }
