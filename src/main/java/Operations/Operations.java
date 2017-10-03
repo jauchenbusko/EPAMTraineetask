@@ -1,11 +1,9 @@
 package Operations;
 
-import java.io.IOException;
-
 public interface Operations {
 
-    void addCash(int value) throws IOException;
-    void giveCash(int value) throws IOException;
+    void addCash(int value);
+    void giveCash(int value);
     void showClientDetails();
     void showBalance();
 }
