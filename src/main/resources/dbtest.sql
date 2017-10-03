@@ -1,0 +1,1 @@
+INSERT INTO clients VALUES (1, 'Name', 'Surname', 'login', 1111, 50 )

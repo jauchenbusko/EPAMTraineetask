@@ -1,8 +1,6 @@
 package Operations;
 
 import Model.Client;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class OperationsImpl implements Operations {
@@ -64,8 +62,9 @@ public class OperationsImpl implements Operations {
         operations.showBalance();
 
         operations.addCash(addValue);
+        operations.showBalance();
+
         operations.giveCash(giveValue);
-        
         operations.showBalance();
     }
 }
