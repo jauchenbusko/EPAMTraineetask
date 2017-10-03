@@ -2,8 +2,7 @@ package Model;
 
 
 public class Client {
-
-    private static int id = 0;
+    
     private String name;
     private String surname;
     private String login;
