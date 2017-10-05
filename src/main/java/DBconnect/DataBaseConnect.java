@@ -1,14 +1,9 @@
 package DBconnect;
 
 import Operations.OperationsImpl;
+
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
-
-
 import java.sql.*;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 
 public class DataBaseConnect {
 
@@ -16,15 +11,7 @@ public class DataBaseConnect {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "";
 
-    private String login;
-    private int pin;
-
-    private String name;
-    private String surname;
-    private int saldo;
-
     private Connection connection;
-    private ResultSet resultSet;
 
     public DataBaseConnect() throws SQLException {
         Driver driver = new FabricMySQLDriver();
@@ -34,33 +21,35 @@ public class DataBaseConnect {
 
     private ResultSet getResultSet(String login, int pin) throws SQLException{
 
-        this.login = login;
-        this.pin = pin;
-
         String queryFirstPart = " SELECT * FROM clients WHERE login = \"";
         String querySecondPart = "\" AND pin = ";
         String query = queryFirstPart + login + querySecondPart + pin;
 
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
 
-        return resultSet;
+        return statement.executeQuery(query);
     }
 
-    public OperationsImpl getClient(String login, int pin) throws SQLException{
+    public OperationsImpl getClient(String login, int pin) throws SQLException, NullPointerException{
 
-        this.login = login;
-        this.pin = pin;
+        String name = null;
+        String surname = null;
+        int saldo = 0;
 
-       this.resultSet = getResultSet(login, pin);
+        ResultSet resultSet = getResultSet(login, pin);
 
         while (resultSet.next()){
-            this.name = resultSet.getString("name");
-            this.surname = resultSet.getString("surname");
-            this.saldo = resultSet.getInt("saldo");
+            name = resultSet.getString("name");
+            surname = resultSet.getString("surname");
+            saldo = resultSet.getInt("saldo");
         }
 
-        return new OperationsImpl(name, surname, login, pin, saldo);
+        if (name == null && surname == null){
+            System.out.println("Wrong login or pin entered");
+            return null;
+        }
+        else
+            return new OperationsImpl(name, surname, login, pin, saldo);
     }
 
     public void closeConnection() throws SQLException{
@@ -73,12 +62,16 @@ public class DataBaseConnect {
 
         try {
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
-            OperationsImpl operations = dataBaseConnect.getClient("login", 1111);
+            OperationsImpl operations = dataBaseConnect.getClient("qwety", 1234);
+            operations.showClientDetails();
+            operations.addCash(50);
             operations.showClientDetails();
             dataBaseConnect.closeConnection();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Problems with DB connection");
+        } catch (NullPointerException e){
+            System.out.println("No such client in DB");
         }
 
 
