@@ -2,6 +2,8 @@ package DBconnect;
 
 import Operations.OperationsImpl;
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
+
+
 import java.sql.*;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -21,15 +23,16 @@ public class DataBaseConnect {
     private String surname;
     private int saldo;
 
-    private Driver driver = new FabricMySQLDriver();
     private Connection connection;
+    private ResultSet resultSet;
 
     public DataBaseConnect() throws SQLException {
+        Driver driver = new FabricMySQLDriver();
         DriverManager.registerDriver(driver);
         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
-    public OperationsImpl getClient(String login, int pin) throws SQLException{
+    private ResultSet getResultSet(String login, int pin) throws SQLException{
 
         this.login = login;
         this.pin = pin;
@@ -41,8 +44,15 @@ public class DataBaseConnect {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
 
-        if (resultSet == null)
-            System.out.println("empty RS");
+        return resultSet;
+    }
+
+    public OperationsImpl getClient(String login, int pin) throws SQLException{
+
+        this.login = login;
+        this.pin = pin;
+
+       this.resultSet = getResultSet(login, pin);
 
         while (resultSet.next()){
             this.name = resultSet.getString("name");
@@ -63,7 +73,7 @@ public class DataBaseConnect {
 
         try {
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
-            OperationsImpl operations = dataBaseConnect.getClient("qwerty", 1234);
+            OperationsImpl operations = dataBaseConnect.getClient("login", 1111);
             operations.showClientDetails();
             dataBaseConnect.closeConnection();
 
