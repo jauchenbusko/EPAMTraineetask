@@ -5,12 +5,6 @@ import java.util.Scanner;
 
 public class OperationsImpl implements Operations {
 
-    private String name;
-    private String surname;
-    private String login;
-    private int pin;
-    private int saldo;
-
     private Client client;
 
     public OperationsImpl(String name, String surname, String login, int pin, int saldo) {
@@ -47,6 +41,14 @@ public class OperationsImpl implements Operations {
     public void showBalance() {
 
         System.out.println(client.getSaldo());
+    }
+
+    public int getClientSaldo(){
+        return client.getSaldo();
+    }
+
+    public String getClientLogin(){
+        return client.getLogin();
     }
 
     public static void main(String args[]){

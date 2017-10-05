@@ -1,4 +1,4 @@
-.idea/
+.idea/*
 EpamTraineeTask.iml
 target/
 src/test

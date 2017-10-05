@@ -7,9 +7,9 @@ import java.sql.*;
 
 public class DataBaseConnect {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/ATM";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
+    private static final String URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11197877";
+    private static final String USERNAME = "sql11197877";
+    private static final String PASSWORD = "7xRjNADdNR";
 
     private Connection connection;
 
@@ -52,6 +52,15 @@ public class DataBaseConnect {
             return new OperationsImpl(name, surname, login, pin, saldo);
     }
 
+    public void updateSaldo(String login, int saldo) throws SQLException{
+
+        String query = "UPDATE clients SET saldo = " + saldo + " WHERE login = \"" + login +"\"";
+
+        Statement statement = connection.createStatement();
+
+        statement.executeUpdate(query);
+    }
+
     public void closeConnection() throws SQLException{
         connection.close();
     }
@@ -62,10 +71,15 @@ public class DataBaseConnect {
 
         try {
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
-            OperationsImpl operations = dataBaseConnect.getClient("qwety", 1234);
+            OperationsImpl operations = dataBaseConnect.getClient("qwerty", 1234);
             operations.showClientDetails();
-            operations.addCash(50);
+            operations.addCash(17);
             operations.showClientDetails();
+         //   operations.giveCash(450);
+            operations.showClientDetails();
+
+            dataBaseConnect.updateSaldo(operations.getClientLogin(), operations.getClientSaldo());
+
             dataBaseConnect.closeConnection();
 
         } catch (SQLException e) {
