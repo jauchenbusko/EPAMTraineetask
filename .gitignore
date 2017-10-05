@@ -1,8 +1,6 @@
-.idea/*
 EpamTraineeTask.iml
 target/
 src/test
-/.idea/
-/.idea/dataSources.local.xml
-/.idea/dataSources.xml
+.idea/*
+
 
