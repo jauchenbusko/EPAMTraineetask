@@ -71,7 +71,7 @@ public class DataBaseConnect {
 
         try {
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
-            OperationsImpl operations = dataBaseConnect.getClient("qwerty", 1234);
+            OperationsImpl operations = dataBaseConnect.getClient("login", 1111);
             operations.showClientDetails();
             operations.addCash(17);
             operations.showClientDetails();
