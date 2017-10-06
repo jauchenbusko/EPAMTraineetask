@@ -1,6 +1,6 @@
 package DBconnect;
 
-import Operations.OperationsImpl;
+import Operations.Operations;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import java.sql.*;
@@ -21,16 +21,30 @@ public class DataBaseConnect {
 
     private ResultSet getResultSet(String login, int pin) throws SQLException{
 
-        String queryFirstPart = " SELECT * FROM clients WHERE login = \"";
-        String querySecondPart = "\" AND pin = ";
-        String query = queryFirstPart + login + querySecondPart + pin;
+        String query = " SELECT * FROM clients WHERE login = \"" + login + "\" AND pin = " + pin;
 
         Statement statement = connection.createStatement();
 
         return statement.executeQuery(query);
     }
 
-    public OperationsImpl getClient(String login, int pin) throws SQLException, NullPointerException{
+    public boolean checkClient(String login, int pin) throws SQLException{
+
+        String name = null;
+        String surname = null;
+
+        ResultSet resultSet = getResultSet(login, pin);
+
+        while (resultSet.next()){
+            name = resultSet.getString("name");
+            surname = resultSet.getString("surname");
+        }
+
+        return name != null || surname != null;
+    }
+
+
+    public Operations getClient(String login, int pin) throws SQLException{
 
         String name = null;
         String surname = null;
@@ -44,15 +58,10 @@ public class DataBaseConnect {
             saldo = resultSet.getInt("saldo");
         }
 
-        if (name == null && surname == null){
-            System.out.println("Wrong login or pin entered");
-            return null;
-        }
-        else
-            return new OperationsImpl(name, surname, login, pin, saldo);
+        return new Operations(name, surname, login, pin, saldo);
     }
 
-    public void updateSaldo(String login, int saldo) throws SQLException{
+    public void updateClientSaldo(String login, int saldo) throws SQLException{
 
         String query = "UPDATE clients SET saldo = " + saldo + " WHERE login = \"" + login +"\"";
 
@@ -71,23 +80,27 @@ public class DataBaseConnect {
 
         try {
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
-            OperationsImpl operations = dataBaseConnect.getClient("login", 1111);
-            operations.showClientDetails();
-            operations.addCash(17);
-            operations.showClientDetails();
-         //   operations.giveCash(450);
-            operations.showClientDetails();
 
-            dataBaseConnect.updateSaldo(operations.getClientLogin(), operations.getClientSaldo());
+           if (dataBaseConnect.checkClient("qwerty", 1234)){
 
-            dataBaseConnect.closeConnection();
+               Operations operations = dataBaseConnect.getClient("qwerty", 1234);
+
+               operations.showClientDetails();
+               operations.addCash(110);
+               operations.showClientBalance();
+               operations.giveCash(1000);
+               operations.showClientBalance();
+
+               dataBaseConnect.updateClientSaldo(operations.getClientLogin(), operations.getClientSaldo());
+
+               dataBaseConnect.closeConnection();
+           } else {
+
+               System.out.println("No such client in DB");
+           }
 
         } catch (SQLException e) {
             System.out.println("Problems with DB connection");
-        } catch (NullPointerException e){
-            System.out.println("No such client in DB");
         }
-
-
     }
 }

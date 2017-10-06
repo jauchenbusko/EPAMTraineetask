@@ -3,11 +3,11 @@ package Operations;
 import Model.Client;
 import java.util.Scanner;
 
-public class OperationsImpl implements Operations {
+public class Operations implements OperationsI {
 
     private Client client;
 
-    public OperationsImpl(String name, String surname, String login, int pin, int saldo) {
+    public Operations(String name, String surname, String login, int pin, int saldo) {
         client = new Client(name, surname, login, pin, saldo);
     }
 
@@ -15,7 +15,7 @@ public class OperationsImpl implements Operations {
     public void addCash(int value){
 
         if ( value%5 == 0 ){
-            client.setSaldo(client.getSaldo()+value);
+            client.setSaldo(client.getSaldo() + value);
         } else {
             System.out.println("Only 5, 10 and 20 bills are accept");
         }
@@ -25,7 +25,7 @@ public class OperationsImpl implements Operations {
     public void giveCash(int value){
 
         if ( value%5 == 0 && value <= client.getSaldo() ){
-            client.setSaldo(client.getSaldo()- value);
+            client.setSaldo(client.getSaldo() - value);
         } else {
             System.out.println("Only 5, 10 and 20 bills are accept");
         }
@@ -34,13 +34,13 @@ public class OperationsImpl implements Operations {
     @Override
     public void showClientDetails() {
 
-        System.out.println(client.toString());
+        System.out.println("Greetings " + client.getName() + client.getSurname() + " in ATM of our Bank\n");
     }
 
     @Override
-    public void showBalance() {
+    public void showClientBalance() {
 
-        System.out.println(client.getSaldo());
+        System.out.println("Your current balance is " + client.getSaldo() + " $ \n");
     }
 
     public int getClientSaldo(){
@@ -58,15 +58,15 @@ public class OperationsImpl implements Operations {
         int addValue = in.nextInt();
         int giveValue = in.nextInt();
 
-        OperationsImpl operations = new OperationsImpl("Zenia", "Busko", "login",1111, 50);
+        Operations operations = new Operations("Zenia", "Busko", "login",1111, 50);
 
         operations.showClientDetails();
-        operations.showBalance();
+        operations.showClientBalance();
 
         operations.addCash(addValue);
-        operations.showBalance();
+        operations.showClientBalance();
 
         operations.giveCash(giveValue);
-        operations.showBalance();
+        operations.showClientBalance();
     }
 }
