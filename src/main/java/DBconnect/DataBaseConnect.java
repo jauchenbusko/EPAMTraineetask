@@ -86,9 +86,12 @@ public class DataBaseConnect {
                Operations operations = dataBaseConnect.getClient("qwerty", 1234);
 
                operations.showClientDetails();
-               operations.addCash(110);
                operations.showClientBalance();
-               operations.giveCash(1000);
+
+               operations.addCash(107);
+               operations.showClientBalance();
+
+               operations.giveCash(107);
                operations.showClientBalance();
 
                dataBaseConnect.updateClientSaldo(operations.getClientLogin(), operations.getClientSaldo());

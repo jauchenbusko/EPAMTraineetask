@@ -26,15 +26,17 @@ public class Operations implements OperationsI {
 
         if ( value%5 == 0 && value <= client.getSaldo() ){
             client.setSaldo(client.getSaldo() - value);
-        } else {
+        } else if (value%5 != 0 && value <= client.getSaldo()) {
             System.out.println("Only 5, 10 and 20 bills are accept");
-        }
+        } else
+            System.out.println("Current status of your Balance don't allow operation");
     }
 
     @Override
     public void showClientDetails() {
 
-        System.out.println("Greetings " + client.getName() + client.getSurname() + " in ATM of our Bank\n");
+        System.out.println("Greetings " + client.getName() + " "
+                            + client.getSurname() + " in ATM of our Bank\n");
     }
 
     @Override
