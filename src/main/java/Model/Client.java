@@ -9,9 +9,6 @@ public class Client {
     private int pin;
     private int saldo;
 
-    public Client() {
-    }
-
     public Client(String name, String surname, String login, int pin, int saldo) {
         this.name = name;
         this.surname = surname;
