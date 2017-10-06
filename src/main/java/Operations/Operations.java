@@ -2,8 +2,6 @@ package Operations;
 
 import Model.Client;
 
-import java.util.Scanner;
-
 public class Operations implements OperationsI {
 
     private Client client;
@@ -11,8 +9,6 @@ public class Operations implements OperationsI {
     public Operations(String name, String surname, String login, int pin, int saldo) {
         client = new Client(name, surname, login, pin, saldo);
     }
-
-
 
     @Override
     public void addCash(int value){
@@ -56,22 +52,4 @@ public class Operations implements OperationsI {
         return client.getLogin();
     }
 
-    public static void main(String args[]){
-
-        Scanner in = new Scanner(System.in);
-
-        int addValue = in.nextInt();
-        int giveValue = in.nextInt();
-
-        Operations operations = new Operations("Zenia", "Busko", "login",1111, 50);
-
-        operations.showClientDetails();
-        operations.showClientBalance();
-
-        operations.addCash(addValue);
-        operations.showClientBalance();
-
-        operations.giveCash(giveValue);
-        operations.showClientBalance();
-    }
 }

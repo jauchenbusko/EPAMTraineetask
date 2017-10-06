@@ -1,6 +1,6 @@
 package DBconnect;
 
-import Operations.Operations;
+import Operations.*;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import com.sun.istack.internal.Nullable;
@@ -114,32 +114,4 @@ public class DataBaseConnect implements DataBaseConnectI {
         }
     }
 
-
-
-    public static void main(String args[]){
-
-            DataBaseConnectI dataBaseConnect = new DataBaseConnect();
-
-           if (dataBaseConnect.checkClient("qwerty", 1234)){
-
-               Operations operations = dataBaseConnect.getClient("qwerty", 1234);
-
-               operations.showClientDetails();
-               operations.showClientBalance();
-
-               operations.addCash(100);
-               operations.showClientBalance();
-
-               operations.giveCash(15);
-               operations.showClientBalance();
-
-               dataBaseConnect.updateClientSaldo(operations.getClientLogin(), operations.getClientSaldo());
-
-               dataBaseConnect.closeConnection();
-           } else {
-
-               System.out.println("No such client in DB");
-           }
-
-    }
 }
