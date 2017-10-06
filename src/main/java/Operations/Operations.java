@@ -1,6 +1,7 @@
 package Operations;
 
 import Model.Client;
+
 import java.util.Scanner;
 
 public class Operations implements OperationsI {
@@ -10,6 +11,8 @@ public class Operations implements OperationsI {
     public Operations(String name, String surname, String login, int pin, int saldo) {
         client = new Client(name, surname, login, pin, saldo);
     }
+
+
 
     @Override
     public void addCash(int value){

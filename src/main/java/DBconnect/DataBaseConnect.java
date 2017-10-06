@@ -81,17 +81,17 @@ public class DataBaseConnect {
         try {
             DataBaseConnect dataBaseConnect = new DataBaseConnect();
 
-           if (dataBaseConnect.checkClient("qwerty", 1234)){
+           if (dataBaseConnect.checkClient("", 1234)){
 
                Operations operations = dataBaseConnect.getClient("qwerty", 1234);
 
                operations.showClientDetails();
                operations.showClientBalance();
 
-               operations.addCash(107);
+               operations.addCash(100);
                operations.showClientBalance();
 
-               operations.giveCash(107);
+               operations.giveCash(10007);
                operations.showClientBalance();
 
                dataBaseConnect.updateClientSaldo(operations.getClientLogin(), operations.getClientSaldo());
