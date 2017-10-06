@@ -3,9 +3,11 @@ package DBconnect;
 import Operations.Operations;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
+import com.sun.istack.internal.Nullable;
+
 import java.sql.*;
 
-public class DataBaseConnect {
+public class DataBaseConnect implements DataBaseConnectI {
 
     private static final String URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11197877";
     private static final String USERNAME = "sql11197877";
@@ -13,75 +15,112 @@ public class DataBaseConnect {
 
     private Connection connection;
 
-    public DataBaseConnect() throws SQLException {
-        Driver driver = new FabricMySQLDriver();
-        DriverManager.registerDriver(driver);
-        connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    public DataBaseConnect() {
+        try {
+            Driver driver = new FabricMySQLDriver();
+            DriverManager.registerDriver(driver);
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+        } catch (SQLException e){
+            System.out.println("Problems with DataBase connection during DataBaseConnect object creation");
+            e.printStackTrace();
+        }
     }
 
-    private ResultSet getResultSet(String login, int pin) throws SQLException{
+    @Nullable
+    private ResultSet getResultSet(String login, int pin) throws NullPointerException{
 
-        String query = " SELECT * FROM clients WHERE login = \"" + login + "\" AND pin = " + pin;
+            String query = " SELECT * FROM clients WHERE login = \"" + login + "\" AND pin = " + pin;
 
-        Statement statement = connection.createStatement();
-
-        return statement.executeQuery(query);
+       try {
+           Statement statement = connection.createStatement();
+           return statement.executeQuery(query);
+       } catch (SQLException e){
+           System.out.println("Problems with DataBase connection during getResultSet() method running");
+           e.printStackTrace();
+           return null;
+       }
     }
 
-    public boolean checkClient(String login, int pin) throws SQLException{
+    @Override
+    public boolean checkClient(String login, int pin){
 
-        String name = null;
-        String surname = null;
+            String name = null;
+            String surname = null;
 
-        ResultSet resultSet = getResultSet(login, pin);
+            ResultSet resultSet = getResultSet(login, pin);
 
-        while (resultSet.next()){
-            name = resultSet.getString("name");
-            surname = resultSet.getString("surname");
+            assert resultSet != null;
+        try {
+            while (resultSet.next()){
+                name = resultSet.getString("name");
+                surname = resultSet.getString("surname");
+            }
+        } catch (SQLException e) {
+            System.out.println("Problems with DataBase connection during checkClient() method running");
+            e.printStackTrace();
         }
 
         return name != null || surname != null;
     }
 
 
-    public Operations getClient(String login, int pin) throws SQLException{
+    @Override
+    public Operations getClient(String login, int pin){
 
-        String name = null;
-        String surname = null;
-        int saldo = 0;
+             String name = null;
+             String surname = null;
+             int saldo = 0;
 
-        ResultSet resultSet = getResultSet(login, pin);
+             ResultSet resultSet = getResultSet(login, pin);
 
-        while (resultSet.next()){
-            name = resultSet.getString("name");
-            surname = resultSet.getString("surname");
-            saldo = resultSet.getInt("saldo");
+             assert resultSet != null;
+        try {
+            while (resultSet.next()){
+                name = resultSet.getString("name");
+                surname = resultSet.getString("surname");
+                saldo = resultSet.getInt("saldo");
+            }
+        } catch (SQLException e) {
+            System.out.println("Problems with DataBase connection during getClient() method running");
+            e.printStackTrace();
         }
 
         return new Operations(name, surname, login, pin, saldo);
     }
 
-    public void updateClientSaldo(String login, int saldo) throws SQLException{
+    @Override
+    public void updateClientSaldo(String login, int saldo){
 
-        String query = "UPDATE clients SET saldo = " + saldo + " WHERE login = \"" + login +"\"";
+            String query = "UPDATE clients SET saldo = " + saldo + " WHERE login = \"" + login +"\"";
 
-        Statement statement = connection.createStatement();
-
-        statement.executeUpdate(query);
+            Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println("Problems with DataBase connection during updateClientSaldo() method running");
+            e.printStackTrace();
+        }
     }
 
-    public void closeConnection() throws SQLException{
-        connection.close();
+    @Override
+    public void closeConnection(){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Problems with DataBase connection during closeConnection() method running");
+            e.printStackTrace();
+        }
     }
 
 
 
     public static void main(String args[]){
 
-        try {
-            DataBaseConnect dataBaseConnect = new DataBaseConnect();
+            DataBaseConnectI dataBaseConnect = new DataBaseConnect();
 
-           if (dataBaseConnect.checkClient("", 1234)){
+           if (dataBaseConnect.checkClient("qwerty", 1234)){
 
                Operations operations = dataBaseConnect.getClient("qwerty", 1234);
 
@@ -91,7 +130,7 @@ public class DataBaseConnect {
                operations.addCash(100);
                operations.showClientBalance();
 
-               operations.giveCash(10007);
+               operations.giveCash(15);
                operations.showClientBalance();
 
                dataBaseConnect.updateClientSaldo(operations.getClientLogin(), operations.getClientSaldo());
@@ -102,8 +141,5 @@ public class DataBaseConnect {
                System.out.println("No such client in DB");
            }
 
-        } catch (SQLException e) {
-            System.out.println("Problems with DB connection");
-        }
     }
 }
