@@ -6,8 +6,8 @@ public class Operations implements OperationsI {
 
     private Client client;
 
-    public Operations(String name, String surname, String login, int pin, int saldo) {
-        client = new Client(name, surname, login, pin, saldo);
+    public Operations(String name, String surname, String login, int saldo) {
+        client = new Client(name, surname, login, saldo);
     }
 
     @Override

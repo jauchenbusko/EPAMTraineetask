@@ -86,7 +86,7 @@ public class DataBaseConnect implements DataBaseConnectI {
             e.printStackTrace();
         }
 
-        return new Operations(name, surname, login, pin, saldo);
+        return new Operations(name, surname, login, saldo);
     }
 
     @Override

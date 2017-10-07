@@ -6,14 +6,12 @@ public class Client {
     private String name;
     private String surname;
     private String login;
-    private int pin;
     private int saldo;
 
-    public Client(String name, String surname, String login, int pin, int saldo) {
+    public Client(String name, String surname, String login, int saldo) {
         this.name = name;
         this.surname = surname;
         this.login = login;
-        this.pin = pin;
         this.saldo = saldo;
     }
 
