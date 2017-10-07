@@ -6,7 +6,7 @@
 
     <groupId>com.github.jauchenbusko.EPAM</groupId>
     <artifactId>EPAM Trainee task</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.00-SNAPSHOT</version>
 
     <build>
         <plugins>

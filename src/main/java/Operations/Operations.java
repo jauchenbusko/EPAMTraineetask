@@ -15,8 +15,9 @@ public class Operations implements OperationsI {
 
         if ( value%5 == 0 ){
             client.setSaldo(client.getSaldo() + value);
+            System.out.println("Operation ended successfully, " + value + " $ added from to account");
         } else {
-            System.out.println("Only 5, 10 and 20 bills are accept");
+            System.out.println("Only 5, 10 and 20 bills are accept, try again\n");
         }
     }
 
@@ -25,10 +26,11 @@ public class Operations implements OperationsI {
 
         if ( value%5 == 0 && value <= client.getSaldo() ){
             client.setSaldo(client.getSaldo() - value);
+            System.out.println("Operation ended successfully, " + value + " $ taken from your account");
         } else if (value%5 != 0 && value <= client.getSaldo()) {
-            System.out.println("Only 5, 10 and 20 bills are accept");
+            System.out.println("Only 5, 10 and 20 bills are accept, try again\n");
         } else
-            System.out.println("Current status of your Balance don't allow operation");
+            System.out.println("Current status of your Balance don't allow operation\n");
     }
 
     @Override

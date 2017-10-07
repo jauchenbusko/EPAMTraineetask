@@ -22,13 +22,13 @@ public class ATM {
             System.out.println("Please Enter Login");
             ATMlogin = Input.enterLogin();
 
-            System.out.println("Please Enter PIN\n");
+            System.out.println("Please Enter PIN");
             ATMpin = Input.enterPin();
 
             if (ATMpin == 0){
                 while (true){
-                System.out.println("To repeat operation enter \"1\"");
-                System.out.println("To end operations enter \"2\"");
+                System.out.println("To repeat Login operation enter \"1\"");
+                System.out.println("To end operations enter \"2\"\n");
 
                 operationNumber = Input.enterOperationNumber();
 
@@ -36,7 +36,7 @@ public class ATM {
                         operationContinue = false;
                         break;
                     } else if (operationNumber != 1){
-                        System.out.println("Wrong operation number, try again");
+                        System.out.println("Wrong operation number, try again\n");
                     } else
                         break;
                 }
@@ -48,8 +48,8 @@ public class ATM {
                 if (!dataBaseConnect.checkClient(ATMlogin, ATMpin)){
                     while (true){
                     System.out.println("Login or PIN are incorrect");
-                    System.out.println("To repeat operation enter \"1\"");
-                    System.out.println("To end operations enter \"2\"");
+                    System.out.println("To repeat Login operation enter \"1\"");
+                    System.out.println("To end operations enter \"2\"\n");
 
                     operationNumber = Input.enterOperationNumber();
 
@@ -58,7 +58,7 @@ public class ATM {
                             operationContinue = false;
                             break;
                         } else if (operationNumber != 1){
-                            System.out.println("Wrong operation number, try again");
+                            System.out.println("Wrong operation number, try again\n");
                         } else
                             break;
                     }
@@ -88,7 +88,7 @@ public class ATM {
                             dataBaseConnect.closeConnection();
                             break;
                         } else
-                            System.out.println("Wrong operation number, try again");
+                            System.out.println("Wrong operation number, try again\n");
                     }
 
                     operationContinue = false;

@@ -42,7 +42,7 @@ public  class Input {
 
         } catch (InputMismatchException e){
 
-            System.out.println("Operation number is integer number");
+            System.out.println("Operation number is integer number\n");
         }
 
         return operationNumber;
@@ -56,12 +56,12 @@ public  class Input {
             cashValue = in.nextInt();
 
             if(cashValue < 0){
-                System.out.println("Enter positive integer value");
+                System.out.println("Enter positive integer value\n");
                 return 0;
             } else
                 return cashValue;
         } catch (InputMismatchException e){
-            System.out.println("Enter positive integer value");
+            System.out.println("Enter positive integer value\n");
             return 0;
         }
     }
