@@ -16,7 +16,7 @@ public class ATM {
         DataBaseConnect dataBaseConnect;
 
         while (operationContinue){
-            System.out.println();
+
             System.out.println("/**********************************************/");
 
             System.out.println("Please Enter Login");
@@ -99,5 +99,6 @@ public class ATM {
 
         System.out.println("/**********************************************/");
         System.out.println("End of operations. Goodbye!");
+        System.out.println("/**********************************************/");
     }
 }
