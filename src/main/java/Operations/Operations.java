@@ -15,7 +15,7 @@ public class Operations implements OperationsI {
 
         if ( value%5 == 0 ){
             client.setSaldo(client.getSaldo() + value);
-            System.out.println("Operation ended, " + value + " $ added from to account\n");
+            System.out.println("Operation ended, " + value + " $ added to your account\n");
         } else {
             System.out.println("Only 5, 10 and 20 bills are accept, try again\n");
         }
