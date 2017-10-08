@@ -21,7 +21,7 @@ public  class Input {
             Scanner in = new Scanner(System.in);
             pin = in.nextInt();
 
-            if(pin < 999 || pin > 10000){
+            if(pin < 1000 || pin > 9999){
                 System.out.println("Enter PIN as 4 numbers Integer code");
                 return 0;
             } else
