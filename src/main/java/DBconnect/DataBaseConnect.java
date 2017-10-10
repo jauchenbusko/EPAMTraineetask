@@ -3,8 +3,6 @@ package DBconnect;
 import Operations.*;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
-import com.sun.istack.internal.Nullable;
-
 import java.sql.*;
 
 public class DataBaseConnect implements DataBaseConnectI {
@@ -27,7 +25,6 @@ public class DataBaseConnect implements DataBaseConnectI {
         }
     }
 
-    @Nullable
     private ResultSet getResultSet(String login, int pin) throws NullPointerException{
 
             String query = " SELECT * FROM clients WHERE login = \"" + login + "\" AND pin = " + pin;
