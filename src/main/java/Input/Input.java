@@ -1,3 +1,7 @@
+/**
+
+ */
+
 package Input;
 
 import java.util.InputMismatchException;

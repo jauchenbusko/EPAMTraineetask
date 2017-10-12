@@ -2,12 +2,16 @@ package Operations;
 
 import Model.Client;
 
+/**
+ *
+ */
+
 public class Operations implements OperationsI {
 
     private Client client;
 
     public Operations(String name, String surname, String login, int saldo) {
-        client = new Client(name, surname, login, saldo);
+        this.client = new Client(name, surname, login, saldo);
     }
 
     @Override

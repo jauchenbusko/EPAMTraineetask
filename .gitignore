@@ -1,8 +1,4 @@
 EpamTraineeTask.iml
-target/generated-sources
-target/generated-test-sources
-target/maven-status
-target/test-classes
 .idea/
-/src/test/
 CoverLetter/
+target/
