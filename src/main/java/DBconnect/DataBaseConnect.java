@@ -1,7 +1,3 @@
-/**
-
- */
-
 package DBconnect;
 
 import Operations.*;
@@ -9,6 +5,11 @@ import Operations.*;
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import java.sql.*;
 
+/**
+ * @author Eugeniusz Busko
+ *
+ *
+ */
 public class DataBaseConnect implements DataBaseConnectI {
 
     private static final String URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11197877";

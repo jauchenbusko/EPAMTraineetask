@@ -58,4 +58,25 @@ public class Operations implements OperationsI {
         return client.getLogin();
     }
 
+    @Override
+    public String toString() {
+        return "Operations{" +
+                "client=" + client +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Operations)) return false;
+
+        Operations that = (Operations) o;
+
+        return client.equals(that.client);
+    }
+
+    @Override
+    public int hashCode() {
+        return client.hashCode();
+    }
 }
