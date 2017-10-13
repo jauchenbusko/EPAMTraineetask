@@ -74,7 +74,7 @@ public class DataBaseConnect implements DataBaseConnectI {
 
              String name = null;
              String surname = null;
-             int saldo = 0;
+             int balance = 0;
 
              ResultSet resultSet = getResultSet(login, pin);
 
@@ -83,27 +83,27 @@ public class DataBaseConnect implements DataBaseConnectI {
             while (resultSet.next()){
                 name = resultSet.getString("name");
                 surname = resultSet.getString("surname");
-                saldo = resultSet.getInt("saldo");
+                balance = resultSet.getInt("balance");
             }
         } catch (SQLException e) {
             System.out.println("Problems with DataBase connection during getClient() method running");
             e.printStackTrace();
         }
 
-        return new Operations(name, surname, login, saldo);
+        return new Operations(name, surname, login, balance);
     }
 
     @Override
-    public void updateClientSaldo(String login, int saldo){
+    public void updateClientbalance(String login, int balance){
 
-            String query = "UPDATE clients SET saldo = " + saldo + " WHERE login = \"" + login +"\"";
+            String query = "UPDATE clients SET balance = " + balance + " WHERE login = \"" + login +"\"";
 
             Statement statement;
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
         } catch (SQLException e) {
-            System.out.println("Problems with DataBase connection during updateClientSaldo() method running");
+            System.out.println("Problems with DataBase connection during updateClientbalance() method running");
             e.printStackTrace();
         }
     }

@@ -20,7 +20,7 @@ public class DataBaseConnectTest {
 
     private static final String name = "name";
     private static final String surname = "surname";
-    private static final int saldo = 1000;
+    private static final int balance = 1000;
 
     @Test
     public void connectionTest() throws Exception {
@@ -41,7 +41,7 @@ public class DataBaseConnectTest {
     @Test
     public void getClientTest() throws Exception {
 
-        Operations operationsLocal = new Operations(name, surname, loginOK, saldo);
+        Operations operationsLocal = new Operations(name, surname, loginOK, balance);
         DataBaseConnect dataBaseConnect = new DataBaseConnect();
         Operations operationsDB = dataBaseConnect.getClient(loginOK, pinOK);
 
@@ -53,10 +53,10 @@ public class DataBaseConnectTest {
     }
 
     @Test
-    public void updateClientSaldoTest() throws Exception {
+    public void updateClientbalanceTest() throws Exception {
 
         DataBaseConnect dataBaseConnectBeforeUpdate = new DataBaseConnect();
-        dataBaseConnectBeforeUpdate.updateClientSaldo("login", 1000);
+        dataBaseConnectBeforeUpdate.updateClientbalance("login", 1000);
         dataBaseConnectBeforeUpdate.closeConnection();
 
         getClientTest();

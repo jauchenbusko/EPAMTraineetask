@@ -88,7 +88,7 @@ public class ATM {
                         } else if (operationNumber == 3)
                             operations.showClientBalance();
                         else if (operationNumber == 4){
-                            dataBaseConnect.updateClientSaldo(operations.getClientLogin(), operations.getClientSaldo());
+                            dataBaseConnect.updateClientbalance(operations.getClientLogin(), operations.getClientBalance());
                             dataBaseConnect.closeConnection();
                             break;
                         } else

@@ -6,7 +6,7 @@ import Model.Client;
  * Class Operation implements OperationsI interface;
  * Contain Client class object;
  * Constructor creates Client class object;
- * getClientSaldo() returns client balance status;
+ * getClientBalance() returns client balance status;
  * getClientLogin() return client login;
  * toString(), equals(), hashcode() overridden for tests needs;
  */
@@ -15,15 +15,15 @@ public class Operations implements OperationsI {
 
     private Client client;
 
-    public Operations(String name, String surname, String login, int saldo) {
-        this.client = new Client(name, surname, login, saldo);
+    public Operations(String name, String surname, String login, int balance) {
+        this.client = new Client(name, surname, login, balance);
     }
 
     @Override
     public void addCash(int value){
 
         if ( value%5 == 0 ){
-            client.setSaldo(client.getSaldo() + value);
+            client.setBalance(client.getBalance() + value);
             System.out.println("Operation ended, " + value + " $ added to your account\n");
         } else {
             System.out.println("Only 5, 10 and 20 bills are accept, try again\n");
@@ -33,10 +33,10 @@ public class Operations implements OperationsI {
     @Override
     public void giveCash(int value){
 
-        if ( value%5 == 0 && value <= client.getSaldo() ){
-            client.setSaldo(client.getSaldo() - value);
+        if ( value%5 == 0 && value <= client.getBalance() ){
+            client.setBalance(client.getBalance() - value);
             System.out.println("Operation ended, " + value + " $ taken from your account\n");
-        } else if (value%5 != 0 && value <= client.getSaldo()) {
+        } else if (value%5 != 0 && value <= client.getBalance()) {
             System.out.println("Only 5, 10 and 20 bills are accept, try again\n");
         } else
             System.out.println("Current status of your Balance don't allow operation\n");
@@ -52,11 +52,11 @@ public class Operations implements OperationsI {
     @Override
     public void showClientBalance() {
 
-        System.out.println("Your current balance is " + client.getSaldo() + " $ \n");
+        System.out.println("Your current balance is " + client.getBalance() + " $ \n");
     }
 
-    public int getClientSaldo(){
-        return client.getSaldo();
+    public int getClientBalance(){
+        return client.getBalance();
     }
 
     public String getClientLogin(){
