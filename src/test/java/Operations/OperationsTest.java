@@ -2,6 +2,10 @@ package Operations;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class  OperationsTest contain tests of Operations class;
+ */
+
 public class OperationsTest {
 
 

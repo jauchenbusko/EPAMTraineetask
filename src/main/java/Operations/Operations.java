@@ -3,7 +3,12 @@ package Operations;
 import Model.Client;
 
 /**
- *
+ * Class Operation implements OperationsI interface;
+ * Contain Client class object;
+ * Constructor creates Client class object;
+ * getClientSaldo() returns client balance status;
+ * getClientLogin() return client login;
+ * toString(), equals(), hashcode() overridden for tests needs;
  */
 
 public class Operations implements OperationsI {

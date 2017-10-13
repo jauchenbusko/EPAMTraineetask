@@ -1,10 +1,10 @@
-/**
-
- */
-
 import DBconnect.DataBaseConnect;
 import Input.Input;
 import Operations.Operations;
+
+/**
+ * Class ATM contain main() method with while loop where application algorithm is running
+ */
 
 public class ATM {
 

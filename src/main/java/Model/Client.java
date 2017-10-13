@@ -1,7 +1,10 @@
 package Model;
 
 /**
- *
+ * Class describes model of ATM client;
+ * Contain name, surname, login and bank account status fields;
+ * Contain getters for all fields, setter for account status field;
+ * toString(), equals(), hashcode() overridden for tests needs;
  */
 
 public class Client {

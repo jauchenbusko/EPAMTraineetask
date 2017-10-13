@@ -5,6 +5,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Class  DataBaseConnectTest contain tests of DataBaseConnect class;
+ */
+
 public class DataBaseConnectTest {
 
 
@@ -52,18 +56,10 @@ public class DataBaseConnectTest {
     public void updateClientSaldoTest() throws Exception {
 
         DataBaseConnect dataBaseConnectBeforeUpdate = new DataBaseConnect();
-        dataBaseConnectBeforeUpdate.updateClientSaldo(loginOK, 1000);
+        dataBaseConnectBeforeUpdate.updateClientSaldo("login", 1000);
         dataBaseConnectBeforeUpdate.closeConnection();
 
-        Operations operationsLocal = new Operations(name, surname, loginOK, saldo );
-        DataBaseConnect dataBaseConnectAfterUpdate = new DataBaseConnect();
-        Operations operationsDB = dataBaseConnectAfterUpdate.getClient(loginOK, pinOK);
-
-        assertEquals(operationsLocal, operationsDB);
-        boolean boolState = operationsLocal.equals(operationsDB);
-        assertEquals(Boolean.toString(boolState), "true" );
-
-        dataBaseConnectAfterUpdate.closeConnection();
+        getClientTest();
     }
 
 }

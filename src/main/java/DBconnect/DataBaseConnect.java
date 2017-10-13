@@ -6,10 +6,13 @@ import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import java.sql.*;
 
 /**
- * @author Eugeniusz Busko
- *
- *
+ * Class DataBaseConnect implements DataBaseConnectI;
+ * Contain fields with URL, username and password from DataBase;
+ * Contain Connection class field;
+ * Constructor create connection to DataBase
+ * getResultSet() returns ResultSet object by input login and PIN;
  */
+
 public class DataBaseConnect implements DataBaseConnectI {
 
     private static final String URL = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11197877";
@@ -65,7 +68,6 @@ public class DataBaseConnect implements DataBaseConnectI {
 
         return name != null || surname != null;
     }
-
 
     @Override
     public Operations getClient(String login, int pin){

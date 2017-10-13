@@ -3,6 +3,10 @@ package Input;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Class input contain static methods which implements input functionality of ATM;
+ */
+
 public  class Input {
 
     public static String enterLogin(){
