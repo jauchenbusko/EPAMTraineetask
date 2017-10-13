@@ -53,10 +53,10 @@ public class DataBaseConnectTest {
     }
 
     @Test
-    public void updateClientbalanceTest() throws Exception {
+    public void updateClientBalanceTest() throws Exception {
 
         DataBaseConnect dataBaseConnectBeforeUpdate = new DataBaseConnect();
-        dataBaseConnectBeforeUpdate.updateClientbalance("login", 1000);
+        dataBaseConnectBeforeUpdate.updateClientBalance("login", 1000);
         dataBaseConnectBeforeUpdate.closeConnection();
 
         getClientTest();

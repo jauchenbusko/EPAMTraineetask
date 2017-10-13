@@ -9,7 +9,7 @@ import Operations.Operations;
  *
  * getClient() method must return Operations object of client with input login and PIN;
  *
- * updateClientbalance() method must send balance status to DataBase when client ends interaction with ATM;
+ * updateClientBalance() method must send balance status to DataBase when client ends interaction with ATM;
  *
  * closeConnection() method must close connection with DataBase;
  */
@@ -20,7 +20,7 @@ public interface DataBaseConnectI {
 
     Operations getClient(String login, int pin);
 
-    void updateClientbalance(String login, int balance);
+    void updateClientBalance(String login, int balance);
 
     void closeConnection();
 }

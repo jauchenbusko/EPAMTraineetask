@@ -94,7 +94,7 @@ public class DataBaseConnect implements DataBaseConnectI {
     }
 
     @Override
-    public void updateClientbalance(String login, int balance){
+    public void updateClientBalance(String login, int balance){
 
             String query = "UPDATE clients SET balance = " + balance + " WHERE login = \"" + login +"\"";
 
@@ -103,7 +103,7 @@ public class DataBaseConnect implements DataBaseConnectI {
             statement = connection.createStatement();
             statement.executeUpdate(query);
         } catch (SQLException e) {
-            System.out.println("Problems with DataBase connection during updateClientbalance() method running");
+            System.out.println("Problems with DataBase connection during updateClientBalance() method running");
             e.printStackTrace();
         }
     }
