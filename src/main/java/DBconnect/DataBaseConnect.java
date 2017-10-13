@@ -9,7 +9,7 @@ import java.sql.*;
  * Class DataBaseConnect implements DataBaseConnectI;
  * Contain fields with URL, username and password from DataBase;
  * Contain Connection class field;
- * Constructor create connection to DataBase
+ * Constructor create connection to DataBase;
  * getResultSet() returns ResultSet object by input login and PIN;
  */
 

@@ -9,7 +9,7 @@ import Operations.Operations;
  *
  * getClient() method must return Operations object of client with input login and PIN;
  *
- * updateClientSaldo() method must send balance status to DataBase when client ends interaction with ATM
+ * updateClientSaldo() method must send balance status to DataBase when client ends interaction with ATM;
  *
  * closeConnection() method must close connection with DataBase;
  */
