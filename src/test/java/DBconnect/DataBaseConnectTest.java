@@ -59,7 +59,11 @@ public class DataBaseConnectTest {
         dataBaseConnectBeforeUpdate.updateClientBalance("login", 1000);
         dataBaseConnectBeforeUpdate.closeConnection();
 
-        getClientTest();
+        Operations operationsLocal = new Operations(name, surname, loginOK, balance);
+        DataBaseConnect dataBaseConnect = new DataBaseConnect();
+        Operations operationsDB = dataBaseConnect.getClient(loginOK, pinOK);
+
+        assertEquals(operationsLocal.getClientBalance(), operationsDB.getClientBalance());
     }
 
 }
