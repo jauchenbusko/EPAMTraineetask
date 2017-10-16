@@ -46,6 +46,7 @@ public class DataBaseConnectTest {
         Operations operationsDB = dataBaseConnect.getClient(loginOK, pinOK);
 
         assertEquals(operationsLocal, operationsDB);
+        assertEquals(operationsLocal.getClientBalance(), operationsDB.getClientBalance());
         boolean boolState = operationsLocal.equals(operationsDB);
         assertEquals(Boolean.toString(boolState), "true" );
 
