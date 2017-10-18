@@ -66,7 +66,7 @@ public class DataBaseConnect implements DataBaseConnectI {
             e.printStackTrace();
         }
 
-        return name != null || surname != null;
+        return name != null && surname != null;
     }
 
     @Override
@@ -98,9 +98,8 @@ public class DataBaseConnect implements DataBaseConnectI {
 
             String query = "UPDATE clients SET balance = " + balance + " WHERE login = \"" + login +"\"";
 
-            Statement statement;
         try {
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(query);
         } catch (SQLException e) {
             System.out.println("Problems with DataBase connection during updateClientBalance() method running");
