@@ -6,3 +6,5 @@ from Clients bank account.
 
 ATM model interacts with Clients Data Base. In DB is stored info about Clients
 Name, Surname, login, PIN, and accounts balance status. 
+
+Test User - login: epam; PIN: 1993
