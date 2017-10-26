@@ -7,6 +7,11 @@ import static org.junit.Assert.*;
 
 /**
  * Class  DataBaseConnectTest contain tests of DataBaseConnect class;
+ * Test Client in Data Base: login: login;
+ *                           PIN: 1111;
+ *                           name: name;
+ *                           surname: surname;
+ *                           balance: 1000;
  */
 
 public class DataBaseConnectTest {
@@ -34,6 +39,8 @@ public class DataBaseConnectTest {
 
         DataBaseConnect dataBaseConnect = new DataBaseConnect();
         assertEquals(String.valueOf(dataBaseConnect.checkClient(loginOK, pinOK)), "true");
+        assertEquals(String.valueOf(dataBaseConnect.checkClient(loginWrong, pinOK)), "false");
+        assertEquals(String.valueOf(dataBaseConnect.checkClient(loginOK, pinWrong)), "false");
         assertEquals(String.valueOf(dataBaseConnect.checkClient(loginWrong, pinWrong)), "false");
         dataBaseConnect.closeConnection();
     }
@@ -57,12 +64,13 @@ public class DataBaseConnectTest {
     public void updateClientBalanceTest() throws Exception {
 
         DataBaseConnect dataBaseConnectBeforeUpdate = new DataBaseConnect();
-        dataBaseConnectBeforeUpdate.updateClientBalance("login", 1000);
+        dataBaseConnectBeforeUpdate.updateClientBalance(loginOK, balance);
         dataBaseConnectBeforeUpdate.closeConnection();
 
         Operations operationsLocal = new Operations(name, surname, loginOK, balance);
-        DataBaseConnect dataBaseConnect = new DataBaseConnect();
-        Operations operationsDB = dataBaseConnect.getClient(loginOK, pinOK);
+        DataBaseConnect dataBaseConnectAfterUpdate = new DataBaseConnect();
+        Operations operationsDB = dataBaseConnectAfterUpdate.getClient(loginOK, pinOK);
+        dataBaseConnectAfterUpdate.closeConnection();
 
         assertEquals(operationsLocal.getClientBalance(), operationsDB.getClientBalance());
     }
