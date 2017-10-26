@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
  * Class  DataBaseConnectTest contain tests of DataBaseConnect class;
  * Test Client in Data Base: login: login;
  *                           PIN: 1111;
- *                           name: name;
- *                           surname: surname;
+ *                           name: Name;
+ *                           surname: Surname;
  *                           balance: 1000;
  */
 
@@ -51,6 +51,8 @@ public class DataBaseConnectTest {
         Operations operationsLocal = new Operations(name, surname, loginOK, balance);
         DataBaseConnect dataBaseConnect = new DataBaseConnect();
         Operations operationsDB = dataBaseConnect.getClient(loginOK, pinOK);
+        operationsDB.showClientDetails();
+        operationsDB.showClientBalance();
 
         assertEquals(operationsLocal, operationsDB);
         assertEquals(operationsLocal.getClientBalance(), operationsDB.getClientBalance());
