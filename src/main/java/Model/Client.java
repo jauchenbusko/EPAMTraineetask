@@ -50,6 +50,7 @@ public class Client {
                 '}';
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,7 +58,9 @@ public class Client {
 
         Client client = (Client) o;
 
-        return login.equals(client.login);
+        return balance == client.balance && name.equals(client.name)
+                                         && surname.equals(client.surname)
+                                         && login.equals(client.login);
     }
 
     @Override
