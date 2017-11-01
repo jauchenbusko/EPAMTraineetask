@@ -18,6 +18,7 @@ public class ATM {
 
         Operations operations;
         DataBaseConnect dataBaseConnect;
+        DataBaseConnect dataBaseConnectUpdate;
 
         while (operationContinue){
 
@@ -68,6 +69,7 @@ public class ATM {
                     }
                 } else {
                     operations = dataBaseConnect.getClient(ATMlogin, ATMpin);
+                    dataBaseConnect.closeConnection();
                     System.out.println("/**********************************************/");
                     operations.showClientDetails();
 
@@ -88,8 +90,9 @@ public class ATM {
                         } else if (operationNumber == 3)
                             operations.showClientBalance();
                         else if (operationNumber == 4){
-                            dataBaseConnect.updateClientBalance(operations.getClientLogin(), operations.getClientBalance());
-                            dataBaseConnect.closeConnection();
+                            dataBaseConnectUpdate = new DataBaseConnect();
+                            dataBaseConnectUpdate.updateClientBalance(operations.getClientLogin(), operations.getClientBalance());
+                            dataBaseConnectUpdate.closeConnection();
                             break;
                         } else
                             System.out.println("Wrong operation number, try again\n");
