@@ -23,8 +23,8 @@ public class DataBaseConnectTest {
     private static final int pinWrong = 1112;
     private static final String loginWrong = "loginW";
 
-    private static final String name = "name";
-    private static final String surname = "surname";
+    private static final String name = "Name";
+    private static final String surname = "Surname";
     private static final int balance = 1000;
 
     @Test
