@@ -21,14 +21,18 @@ public class DataBaseConnect implements DataBaseConnectI {
 
     private Connection connection;
 
-    public DataBaseConnect() {
+    public DataBaseConnect()  {
         try {
+            Class.forName("com.mysql.fabric.jdbc.FabricMySQLDriver");
             Driver driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
         } catch (SQLException e){
             System.out.println("Problems with DataBase connection during DataBaseConnect object creation");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e){
+            System.out.println("JDBC Driver Class not found");
             e.printStackTrace();
         }
     }
